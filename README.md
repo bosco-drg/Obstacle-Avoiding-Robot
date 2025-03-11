@@ -1,93 +1,92 @@
-# Robot Éviteur d'Obstacles
-## Présentation du Projet
+# Obstacle Avoiding Robot
+## Project Overview
 
-Le Robot Éviteur d'Obstacles est un projet de robotique autonome conçu pour naviguer efficacement dans des environnements en détectant et en évitant les obstacles. Développé dans le cadre d'un projet de deuxième année de BUT GEII (Génie Électrique et Informatique Industrielle).
+The Obstacle Avoiding Robot is an autonomous robotics project designed to navigate efficiently through environments by detecting and avoiding obstacles. Developed as part of a second-year project in BUT GEII (Electrical Engineering and Industrial Computing).
 
 <br>
 <div align="center">
   <figure>
-    <img src="docs/robot_photo.png" alt="Robot Éviteur d'Obstacles" width="500" style="max-width: 100%;">
-    <p><em>Vue d'ensemble du Robot Éviteur d'Obstacles</em></p>
+    <img src="docs/robot.png" alt="Obstacle Avoiding Robot" width="500" style="max-width: 100%;">
+    <p><em>Overview of the Obstacle Avoiding Robot</em></p>
   </figure>
 </div>
 <br>
 
-## Objectifs du Projet
+## Project Objectives
 
-1. **Concevoir un robot mobile autonome** capable de détecter et d'éviter les obstacles en temps réel
-2. **Implémenter des algorithmes de navigation intelligente** adaptés à différents environnements et situations
-3. **Développer une interface graphique de contrôle** permettant de visualiser les données des capteurs et d'envoyer des commandes au robot
-4. **Mettre en place une communication Bluetooth fiable** entre le robot et l'interface de contrôle
-5. **Intégrer un système de contrôle manuel** via une manette compatible ou un controleur bluethouth
+1. **Design an autonomous mobile robot** capable of detecting and avoiding obstacles in real-time
+2. **Implement intelligent navigation algorithms** adapted to different environments and situations
+3. **Develop a graphical control interface** to visualize sensor data and send commands to the robot
+4. **Establish reliable Bluetooth communication** between the robot and the control interface
+5. **Integrate a manual control system** via a compatible controller or Bluetooth device
 
-## Caractéristiques Matérielles
+## Hardware Specifications
 
-Le robot est construit autour des composants suivants :
+The robot is built around the following components:
 
-- **Microcontrôleur** : PIC utilisé pour le traitement central et la prise de décision
-- **Capteurs de distance** : Capteurs infrarouges pour la détection d'obstacles
-- **Module Bluetooth** : ESP32 configuré en mode esclave pour la communication sans fil
-- **Système de locomotion** : Moteurs à courant continu avec encodeurs pour un contrôle précis
-- **Alimentation** : Batteries rechargeables offrant une autonomie de plusieurs heures
+- **Microcontroller**: PIC used for central processing and decision making
+- **Distance Sensors**: Infrared sensors for obstacle detection
+- **Bluetooth Module**: ESP32 configured in slave mode for wireless communication
+- **Locomotion System**: DC motors with encoders for precise control
+- **Power Supply**: Rechargeable batteries offering several hours of autonomy
 
-## Programmation du Robot
+## Robot Programming
 
-Le robot est programmé en utilisant l'environnement MPLAB en C++ :
+The robot is programmed using the MPLAB environment in C++ for the robot and the Visual Studio environment in C# for the control interface:
 
-La programmation est de bas niveau, exploitant directement les registres du microcontrôleur pour configurer les différents modules tels que les convertisseurs analogique-numérique (ADC), numérique-analogique (DAC), les hacheurs pour le contrôle PWM des moteurs, et autres périphériques.
+The programming is low-level, directly utilizing the microcontroller's registers to configure various modules such as analog-to-digital converters (ADC), digital-to-analog converters (DAC), choppers for PWM motor control, and other peripherals.
 
-Le programme utilise des structures avancées pour optimiser la vitesse d'exécution et l'utilisation de la mémoire :
-- Buffers circulaires pour le traitement efficace des données des capteurs
-- Timers à plusieurs niveaux pour la gestion précise des tâches
-- Structures de données optimisées pour le stockage et l'accès rapide aux informations
+The program uses advanced structures to optimize execution speed and memory usage:
 
-### Architecture Logicielle
+- Circular buffers for efficient sensor data processing
+- Multi-level timers for precise task management
+- Optimized data structures for fast information storage and access
 
-Le code source est structuré en plusieurs modules distincts qui interagissent entre eux :
+### Software Architecture
 
-#### Module de Détection
-- Gestion des capteurs infrarouges
-- Filtrage et traitement des signaux pour éliminer le bruit
-- Calcul des distances et identification des obstacles
-- Cartographie simple de l'environnement proche
+The source code is structured into several distinct modules that interact with each other:
 
-#### Module de Locomotion
-- Contrôle précis des moteurs via PWM
-- Gestion des encodeurs pour le suivi de position
-- Algorithmes de décélération et d'accélération progressive
-- Contrôle différentiel pour les virages précis
+#### Detection Module
+- Management of infrared sensors
+- Signal filtering and processing to eliminate noise
+- Distance calculation and obstacle identification
+- Simple mapping of the immediate environment
 
-#### Module de Décision
-- Algorithmes d'évitement d'obstacles
-- Planification de trajectoire à court terme
-- Systèmes de priorité pour la prise de décision
+#### Locomotion Module
+- Precise motor control via PWM
+- Encoder management for position tracking
+- Progressive deceleration and acceleration algorithms
+- Differential control for precise turns
 
-#### Module de Communication
-- Protocole Bluetooth pour le contrôle à distance
-- Gestion des commandes entrantes
-- Envoi des données télémétriques
-- Système de contrôle de flux pour éviter la saturation
+#### Decision Module
+- Obstacle avoidance algorithms
+- Short-term path planning
+- Priority systems for decision making
 
-## Interface de Contrôle C# via Bluetooth
+#### Communication Module
+- Bluetooth protocol for remote control
+- Management of incoming commands
+- Sending telemetry data
+- Flow control system to prevent saturation
 
-Le robot peut être contrôlé et surveillé grâce à une application Windows développée en C# :
+## C# Control Interface via Bluetooth
 
-- **Contrôle en temps réel** : Pilotage manuel du robot via des commandes directionnelles avec retour visuel immédiat
-- **Visualisation des données capteurs** : Affichage graphique des distances mesurées et représentation de l'environnement
-- **Paramétrage du comportement autonome** : Ajustement des seuils de détection, des distances de sécurité et des comportements d'évitement
-- **Enregistrement des données** : Possibilité de sauvegarder les parcours et les données des capteurs pour analyse ultérieure
-- **Mode automatique/manuel** : Basculement facile entre les modes de fonctionnement du robot
+The robot can be controlled and monitored using a Windows application developed in C#:
 
+- **Real-time Control**: Manual piloting of the robot via directional commands with immediate visual feedback
+- **Sensor Data Visualization**: Graphical display of measured distances and environment representation
+- **Autonomous Behavior Configuration**: Adjustment of detection thresholds
+- **Automatic/Manual Mode**: Easy switching between robot operating modes
 
-### Communication Bluetooth
+### Bluetooth Communication
 
-Le système utilise un ESP32 configuré en mode esclave pour établir une connexion série sans fil avec l'ordinateur. Le protocole de communication inclut :
+The system uses an ESP32 configured in slave mode to establish a wireless serial connection with the computer. The communication protocol includes:
 
-- Commandes de déplacement (avancer, reculer, tourner à droite/gauche, arrêter)
-- Requêtes d'état des capteurs (distances, vitesse)
-- Commandes de paramétrage (réglage des seuils, des vitesses, des modes)
-- Support pour le contrôle via une manette de jeu (comme une manette PS4)
+- Movement commands (forward, backward, turn right/left, stop)
+- Sensor status requests (distances, speed)
+- Configuration commands (adjustment of thresholds, speeds, modes)
+- Support for control via a game controller (such as a PS4 controller)
 
 ---
 
-© 2024 Robot Éviteur d'Obstacles. Développé par Bosco.
+© 2024 Obstacle Avoiding Robot. Developed by Bosco.
